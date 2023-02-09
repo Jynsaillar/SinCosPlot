@@ -1,41 +1,30 @@
 #include <Arduino.h>
 
-float sinValue = 0.0f;
-float cosValue = 0.0f;
+double sinValue = 0.0;
+double cosValue = 0.0;
+double i = 0.0;
 
 void printSinCos()
 {
-  float stepSize = 0.1f;
-  for (float i = 0.0f; i < PI; i += stepSize)
+  double stepSize = 0.01f;
+  for (i = 0.0; i <= PI; i += stepSize)
   {
     sinValue = sin(i);
-    cosValue = cos(i);
+    cosValue = cos(-i);
     Serial.print(sinValue);
-    Serial.print(",");
+    Serial.print(" ");
     Serial.println(cosValue);
-    delay(100);
-  }
-
-  for (float j = PI; j > stepSize; j -= stepSize)
-  {
-    sinValue = sin(j);
-    cosValue = cos(j);
-    Serial.print(sinValue);
-    Serial.print(",");
-    Serial.println(cosValue);
-    delay(100);
   }
 }
 
 void setup()
 {
   // put your setup code here, to run once:
-  Serial.begin(115200);
+  Serial.begin(9600);
 }
 
 void loop()
 {
   // put your main code here, to run repeatedly:
   printSinCos(); // Prints a sine wave and a cosine wave to serial, which can be viewed on a plotter like the Arduino IDE plotter.
-  delay(250);
 }
